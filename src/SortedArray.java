@@ -69,10 +69,27 @@ public class SortedArray {
         for (int i = 0; i < numElements; i++) {
             if (array[i] == value) {
                 found = true;
+                break;
             }
         }
         return found;
     }
+
+    public boolean existElementbinary(int element){
+        return binarySearch(element, 0, numElements-1);
+    }
+
+    private boolean binarySearch (int element, int minorIndex, int upperIndex){
+        boolean found = false;
+        int middle = array[(upperIndex-1)/2];
+
+        while ((minorIndex < upperIndex) && found == false){
+
+        }
+
+        return found;
+    }
+
 
     public static void main(String[] args) {
 
