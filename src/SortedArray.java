@@ -39,6 +39,7 @@ public class SortedArray {
         return array[value-1];
     }
 
+    //pendiente de corregir - no va bien.
     public void removeElement (int pos) {
         if (pos <= numElements) {
             array[pos - 1] = array[pos];
@@ -81,13 +82,26 @@ public class SortedArray {
 
     private boolean binarySearch (int element, int minorIndex, int upperIndex){
         boolean found = false;
-        int middle = array[(upperIndex-1)/2];
 
-        while ((minorIndex < upperIndex) && found == false){
 
+        if (upperIndex >= minorIndex){
+            int middle = minorIndex + (upperIndex - minorIndex) / 2;
+
+            if (array[middle] == element){
+                found = true;
+                return found;
+            }
+
+            if (array[middle] > element){
+                return binarySearch(element,minorIndex,middle-1);
+            }else{
+                return binarySearch(element, middle+1, upperIndex);
+            }
+
+        }else{
+            return found;
         }
 
-        return found;
     }
 
 
@@ -109,7 +123,7 @@ public class SortedArray {
         System.out.println("Elment at position " + position + " is: " + v.getElementAt(position));
 
         System.out.println();
-        v.removeElement(3);
+        //v.removeElement(3);
         v.view_array();
         System.out.println("Number of elements inserted into array: " + v.getNumElements());
         System.out.println("Array Empty: " + v.isEmpty());
@@ -117,6 +131,12 @@ public class SortedArray {
 
         System.out.println("Value 25 exist into array: " + v.existElement(25));
         System.out.println("Value 20 exist into array: " + v.existElement(20));
+
+        System.out.println(">> Search with binarySearch <<");
+        System.out.println("Value 35 exist into array: " + v.existElementbinary(35));
+        System.out.println("Value 20 exist into array: " + v.existElementbinary(20));
+
+
 
     }
 
